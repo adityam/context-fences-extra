@@ -105,10 +105,18 @@
 \stopuseMPgraphic
 
 
-\setupframed [\c!left\c!rulethickness=\framedparameter{\c!rulethickness},  \c!left\c!framecolor=\framedparameter{\c!framecolor}]
-\setupframed [\c!right\c!rulethickness=\framedparameter{\c!rulethickness}, \c!right\c!framecolor=\framedparameter{\c!framecolor}]
-\setupframed [\c!top\c!rulethickness=\framedparameter{\c!rulethickness},   \c!top\c!framecolor=\framedparameter{\c!framecolor}]
-\setupframed [\c!bottom\c!rulethickness=\framedparameter{\c!rulethickness},\c!bottom\c!framecolor=\framedparameter{\c!framecolor}]
+\setupframed
+  [
+    \c!left\c!rulethickness=\framedparameter\c!rulethickness,  
+    \c!right\c!rulethickness=\framedparameter\c!rulethickness,
+    \c!top\c!rulethickness=\framedparameter\c!rulethickness
+    \c!bottom\c!rulethickness=\framedparameter\c!rulethickness,
+    %
+    \c!left\c!framecolor=\framedparameter\c!framecolor,
+    \c!right\c!framecolor=\framedparameter\c!framecolor,
+    \c!top\c!framecolor=\framedparameter\c!framecolor,
+    \c!bottom\c!framecolor=\framedparameter\c!framecolor,
+  ]
 
 \installleftframerenderer  {tight}{\useMPgraphic{frame_tight_left}}
 \installrightframerenderer {tight}{\useMPgraphic{frame_tight_right}}
