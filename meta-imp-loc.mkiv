@@ -1,0 +1,331 @@
+%D \module
+%D   [       file=meta-imp-loc,
+%D        version=2012.05.28,
+%D          title=\METAPOST\ Graphics,
+%D       subtitle=Custom frames,
+%D         author=Aditya Mahajan,
+%D           date=\currentdate,
+%D      copyright={Aditya Mahajan}]
+
+\unprotect
+
+%D This library provides two additional frame renderes \type{local} and
+%D \type{tight}, mainly for use in tables. The default frame renderer is
+%D unable to draw rules of different sizes within the same frame. In
+%D professional table typesetting is common practice to draw unequally sized
+%D rules, e.g. a thick rule above the first row and a thinner one underneath.
+%D That is what the frame renderer \type{local} is intended for.
+%D
+%D Another requirement in table typesetting, especially useful for
+%D multiple-line heads, is to draw discontinuous rules. Rules, that have a
+%D small gap between the individual columns. That is where the frame renderer
+%D \type{tight} comes into play. In contrast to the \type{local} renderer, the
+%D \type{tight} renderer does not draw a rule through areas that are set apart
+%D with the different \type{[b|r|t|l]offset} parameters.
+
+\startuseMPgraphic {frame_local_top}
+  draw topboundary OverlayBox 
+    leftenlarged  (\frameddimension{leftrulethickness} -.5*\frameddimension{toprulethickness})
+    rightenlarged (\frameddimension{rightrulethickness}-.5*\frameddimension{toprulethickness})
+    shifted (0, .5*\frameddimension{toprulethickness})
+    withpen pensquare scaled (\frameddimension{toprulethickness}) 
+    withcolor \MPcolor{\framedparameter{topframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\startuseMPgraphic {frame_local_bottom}
+  draw bottomboundary OverlayBox
+    leftenlarged  (\frameddimension{leftrulethickness} -.5*\frameddimension{bottomrulethickness})
+    rightenlarged (\frameddimension{rightrulethickness}-.5*\frameddimension{bottomrulethickness})
+    shifted (0, -.5*\frameddimension{bottomrulethickness})
+    withpen pensquare scaled (\frameddimension{bottomrulethickness}) 
+    withcolor \MPcolor{\framedparameter{bottomframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\startuseMPgraphic {frame_local_left}
+  draw leftboundary OverlayBox
+    topenlarged    (\frameddimension{toprulethickness}   -.5*\frameddimension{leftrulethickness})
+    bottomenlarged (\frameddimension{bottomrulethickness}-.5*\frameddimension{leftrulethickness})
+    shifted (-.5*\frameddimension{leftrulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{leftrulethickness}) 
+    withcolor \MPcolor{\framedparameter{leftframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\startuseMPgraphic {frame_local_right}
+  draw rightboundary OverlayBox 
+    topenlarged    (\frameddimension{toprulethickness}   -.5*\frameddimension{rightrulethickness})
+    bottomenlarged (\frameddimension{bottomrulethickness}-.5*\frameddimension{rightrulethickness})
+    shifted (.5*\frameddimension{rightrulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{rightrulethickness}) 
+    withcolor \MPcolor{\framedparameter{rightframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+
+\startuseMPgraphic {frame_tight_top}
+  draw topboundary OverlayBox 
+    leftenlarged  -\frameddimension{\c!loffset}
+    rightenlarged -\frameddimension{\c!roffset}
+    shifted (0, .5*\frameddimension{toprulethickness})
+    withpen pensquare scaled (\frameddimension{toprulethickness}) 
+    withcolor \MPcolor{\framedparameter{topframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\startuseMPgraphic {frame_tight_bottom}
+  draw bottomboundary OverlayBox
+    leftenlarged  -\frameddimension{\c!loffset}
+    rightenlarged -\frameddimension{\c!roffset}
+    shifted (0, -.5*\frameddimension{bottomrulethickness})
+    withpen pensquare scaled (\frameddimension{bottomrulethickness}) 
+    withcolor \MPcolor{\framedparameter{bottomframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\startuseMPgraphic {frame_tight_left}
+  draw leftboundary OverlayBox
+    topenlarged    -\frameddimension{\c!toffset}
+    bottomenlarged -\frameddimension{\c!boffset}
+    shifted (-.5*\frameddimension{leftrulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{leftrulethickness}) 
+    withcolor \MPcolor{\framedparameter{leftframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+\startuseMPgraphic {frame_tight_right}
+  draw rightboundary OverlayBox 
+    topenlarged    -\frameddimension{\c!toffset}
+    bottomenlarged -\frameddimension{\c!boffset}
+    shifted (.5*\frameddimension{rightrulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{rightrulethickness}) 
+    withcolor \MPcolor{\framedparameter{rightframecolor}} ;
+  setbounds currentpicture to OverlayBox ;
+\stopuseMPgraphic
+
+
+\setupframed [\c!left\c!rulethickness=\framedparameter{\c!rulethickness},  \c!left\c!framecolor=\framedparameter{\c!framecolor}]
+\setupframed [\c!right\c!rulethickness=\framedparameter{\c!rulethickness}, \c!right\c!framecolor=\framedparameter{\c!framecolor}]
+\setupframed [\c!top\c!rulethickness=\framedparameter{\c!rulethickness},   \c!top\c!framecolor=\framedparameter{\c!framecolor}]
+\setupframed [\c!bottom\c!rulethickness=\framedparameter{\c!rulethickness},\c!bottom\c!framecolor=\framedparameter{\c!framecolor}]
+
+\installleftframerenderer  {tight}{\useMPgraphic{frame_tight_left}}
+\installrightframerenderer {tight}{\useMPgraphic{frame_tight_right}}
+\installtopframerenderer   {tight}{\useMPgraphic{frame_tight_top}}
+\installbottomframerenderer{tight}{\useMPgraphic{frame_tight_bottom}}
+
+\installleftframerenderer  {local}{\useMPgraphic{frame_local_left}}
+\installrightframerenderer {local}{\useMPgraphic{frame_local_right}}
+\installtopframerenderer   {local}{\useMPgraphic{frame_local_top}}
+\installbottomframerenderer{local}{\useMPgraphic{frame_local_bottom}}
+
+
+\protect
+
+\continueifinputfile{meta-imp-loc.mkiv}
+
+% \useMPlibrary[loc]
+
+\starttext
+
+\defineframed
+  [localA]
+  [frame=off,
+   bottomframe=local,
+   rightframe=local,
+   topframe=local,
+   leftframe=local,
+   bottomrulethickness=5pt,
+   rightrulethickness=5pt,
+   toprulethickness=5pt,
+   leftrulethickness=5pt,
+   boffset=5pt,
+   roffset=10pt,
+   toffset=15pt,
+   loffset=20pt]
+
+local
+\localA{Hello world}
+\blank [1cm]
+
+\defineframed
+  [tightA]
+  [frame=off,
+   bottomframe=tight,
+   rightframe=tight,
+   topframe=tight,
+   leftframe=tight,
+   bottomrulethickness=5pt,
+   rightrulethickness=5pt,
+   toprulethickness=5pt,
+   leftrulethickness=5pt,
+   boffset=5pt,
+   roffset=10pt,
+   toffset=15pt,
+   loffset=20pt]
+
+tight
+\tightA{Hello world}
+\blank [1cm]
+
+\defineframed
+  [tightB]
+  [frame=off,
+   bottomframe=tight,
+   bottomrulethickness=5pt,
+   loffset=25pt,
+   boffset=5pt]
+
+tight
+\tightB{Hello world}
+\blank [1cm]
+
+\defineframed
+  [localB]
+  [frame=off,
+   bottomframe=local,
+   bottomrulethickness=5pt,
+   loffset=25pt,
+   boffset=5pt]
+
+local
+\localB{Hello world}
+\blank [1cm]
+
+\defineframed
+  [tightC]
+  [frame=off,
+   offset=10pt,
+   rulethickness=20pt,
+   leftframe=tight,
+   leftframecolor=green,
+   bottomframe=tight,
+   bottomframecolor=yellow,
+   rightframe=tight,
+   rightframecolor=lightgray,
+   topframe=tight,
+   topframecolor=blue]
+
+tight
+\tightC{Hello world}
+\blank [2cm]
+
+\defineframed
+  [localC]
+  [frame=off,
+   leftframe=local,
+   leftrulethickness=18pt,
+   leftframecolor=green,
+   bottomframe=local,
+   bottomrulethickness=10pt,
+   bottomframecolor=yellow,
+   rightframe=local,
+   rightrulethickness=20pt,
+   rightframecolor=lightgray,
+   topframe=local,
+   toprulethickness=25pt,
+   topframecolor=blue]
+
+local
+\localC{Hello world}
+\blank [2cm]
+
+\defineframed
+  [localD]
+  [localC]
+  [toffset=10pt,
+   loffset=30pt]
+
+local
+\localD{Hello world}
+\blank [1cm]
+
+\defineframed
+  [localE]
+  [frame=off,
+   leftframe=local,
+   leftrulethickness=25pt,
+   leftframecolor=green,
+   bottomframe=local,
+   bottomrulethickness=20pt,
+   bottomframecolor=yellow,
+   rightframe=local,
+   rightrulethickness=18pt,
+   rightframecolor=lightgray,
+   topframe=local,
+   toprulethickness=10pt,
+   topframecolor=blue,
+   offset=5mm]
+
+local
+\localE{Hello world}
+\blank [1cm]
+
+\defineframed
+  [localF]
+  [frame=off,
+   rulethickness=5pt,
+   bottomframe=local,
+   topframe=local,
+   toprulethickness=2pt]
+
+local
+\localF{Hello world}
+\blank [1cm]
+
+\defineframed
+  [tightD]
+  [frame=off,
+   rulethickness=5pt,
+   bottomframe=tight,
+   topframe=tight,
+   toprulethickness=2pt]
+
+tight
+\tightD{Hello world}
+\blank [1cm]
+
+\startsetups table
+  %\setupTABLE [frame=off, rulethickness=.03em] % fails
+  \setupTABLE [frame=off, rulethickness=.03em, bottomrulethickness=.03em, rightrulethickness=.03em, toprulethickness=.03em, leftrulethickness=.03em]
+
+  % vertical alignment
+  \setupTABLE [column]         [align={middle,lohi}]
+
+  % column spacing
+  \setupTABLE [column] [each]  [loffset=.5ex, roffset=.5ex]
+  \setupTABLE [column] [first] [loffset=0mm]
+  \setupTABLE [column] [last]  [roffset=0mm]
+
+  % rules
+  \setupTABLE [row]    [first] [topframe=on, rulethickness=0.08em]
+  \setupTABLE [row]    [2]     [topframe=tight]
+  \setupTABLE [row]    [last]  [bottomframe=on, rulethickness=0.08em]
+
+  \setupTABLE [row]    [6]     [topframe=on]
+  \setupTABLE [row]    [last]  [align=middle]
+
+  \setupTABLE [row]    [last]  [topframe=local]
+\stopsetups
+
+\bTABLE [setups=table]
+  \bTR\bTH Part \eTH\bTH Problem \eTH\bTH Score \eTH\bTH Sum \eTH\eTR
+
+  % first part
+  \bTR\bTD[nr=4] 1 \eTD\bTD 1a \eTD\bTD 2 \eTD\bTD[nr=4] 7 \eTD\eTR
+  \bTR                 \bTD 2b \eTD\bTD 2 \eTD                 \eTR
+  \bTR                 \bTD 3a \eTD\bTD 1 \eTD                 \eTR
+  \bTR                 \bTD 5b \eTD\bTD 2 \eTD                 \eTR
+
+  % second part
+  \bTR\bTD[nr=4] 2 \eTD\bTD 6a \eTD\bTD 2 \eTD\bTD[nr=4] 7 \eTD\eTR
+  \bTR                 \bTD 6b \eTD\bTD 2 \eTD                 \eTR
+  \bTR                 \bTD 7a \eTD\bTD 1 \eTD                 \eTR
+  \bTR                 \bTD 8b \eTD\bTD 2 \eTD                 \eTR
+
+  % total
+  \bTR\bTD[nc=3] Total                    \eTD\bTD 14      \eTD\eTR
+\eTABLE
+
+\stoptext
