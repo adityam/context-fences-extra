@@ -25,41 +25,41 @@
 
 \startuseMPgraphic {frame_local_top}
   draw topboundary OverlayBox 
-    leftenlarged  (\frameddimension{leftrulethickness} -.5*\frameddimension{toprulethickness})
-    rightenlarged (\frameddimension{rightrulethickness}-.5*\frameddimension{toprulethickness})
-    shifted (0, .5*\frameddimension{toprulethickness})
-    withpen pensquare scaled (\frameddimension{toprulethickness}) 
-    withcolor \MPcolor{\framedparameter{topframecolor}} ;
+    leftenlarged  (\frameddimension{\c!left\c!rulethickness} -.5*\frameddimension{\c!top\c!rulethickness})
+    rightenlarged (\frameddimension{\c!right\c!rulethickness}-.5*\frameddimension{\c!top\c!rulethickness})
+    shifted (0, .5*\frameddimension{\c!top\c!rulethickness})
+    withpen pensquare scaled (\frameddimension{\c!top\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!top\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
 \startuseMPgraphic {frame_local_bottom}
   draw bottomboundary OverlayBox
-    leftenlarged  (\frameddimension{leftrulethickness} -.5*\frameddimension{bottomrulethickness})
-    rightenlarged (\frameddimension{rightrulethickness}-.5*\frameddimension{bottomrulethickness})
-    shifted (0, -.5*\frameddimension{bottomrulethickness})
-    withpen pensquare scaled (\frameddimension{bottomrulethickness}) 
-    withcolor \MPcolor{\framedparameter{bottomframecolor}} ;
+    leftenlarged  (\frameddimension{\c!left\c!rulethickness} -.5*\frameddimension{\c!bottom\c!rulethickness})
+    rightenlarged (\frameddimension{\c!right\c!rulethickness}-.5*\frameddimension{\c!bottom\c!rulethickness})
+    shifted (0, -.5*\frameddimension{\c!bottom\c!rulethickness})
+    withpen pensquare scaled (\frameddimension{\c!bottom\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!bottom\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
 \startuseMPgraphic {frame_local_left}
   draw leftboundary OverlayBox
-    topenlarged    (\frameddimension{toprulethickness}   -.5*\frameddimension{leftrulethickness})
-    bottomenlarged (\frameddimension{bottomrulethickness}-.5*\frameddimension{leftrulethickness})
-    shifted (-.5*\frameddimension{leftrulethickness}, 0)
-    withpen pensquare scaled (\frameddimension{leftrulethickness}) 
-    withcolor \MPcolor{\framedparameter{leftframecolor}} ;
+    topenlarged    (\frameddimension{\c!top\c!rulethickness}   -.5*\frameddimension{\c!left\c!rulethickness})
+    bottomenlarged (\frameddimension{\c!bottom\c!rulethickness}-.5*\frameddimension{\c!left\c!rulethickness})
+    shifted (-.5*\frameddimension{\c!left\c!rulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{\c!left\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!left\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
 \startuseMPgraphic {frame_local_right}
   draw rightboundary OverlayBox 
-    topenlarged    (\frameddimension{toprulethickness}   -.5*\frameddimension{rightrulethickness})
-    bottomenlarged (\frameddimension{bottomrulethickness}-.5*\frameddimension{rightrulethickness})
-    shifted (.5*\frameddimension{rightrulethickness}, 0)
-    withpen pensquare scaled (\frameddimension{rightrulethickness}) 
-    withcolor \MPcolor{\framedparameter{rightframecolor}} ;
+    topenlarged    (\frameddimension{\c!top\c!rulethickness}   -.5*\frameddimension{\c!right\c!rulethickness})
+    bottomenlarged (\frameddimension{\c!bottom\c!rulethickness}-.5*\frameddimension{\c!right\c!rulethickness})
+    shifted (.5*\frameddimension{\c!right\c!rulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{\c!right\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!right\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
@@ -68,9 +68,9 @@
   draw topboundary OverlayBox 
     leftenlarged  -\frameddimension{\c!loffset}
     rightenlarged -\frameddimension{\c!roffset}
-    shifted (0, .5*\frameddimension{toprulethickness})
-    withpen pensquare scaled (\frameddimension{toprulethickness}) 
-    withcolor \MPcolor{\framedparameter{topframecolor}} ;
+    shifted (0, .5*\frameddimension{\c!top\c!rulethickness})
+    withpen pensquare scaled (\frameddimension{\c!top\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!top\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
@@ -78,9 +78,9 @@
   draw bottomboundary OverlayBox
     leftenlarged  -\frameddimension{\c!loffset}
     rightenlarged -\frameddimension{\c!roffset}
-    shifted (0, -.5*\frameddimension{bottomrulethickness})
-    withpen pensquare scaled (\frameddimension{bottomrulethickness}) 
-    withcolor \MPcolor{\framedparameter{bottomframecolor}} ;
+    shifted (0, -.5*\frameddimension{\c!bottom\c!rulethickness})
+    withpen pensquare scaled (\frameddimension{\c!bottom\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!bottom\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
@@ -88,9 +88,9 @@
   draw leftboundary OverlayBox
     topenlarged    -\frameddimension{\c!toffset}
     bottomenlarged -\frameddimension{\c!boffset}
-    shifted (-.5*\frameddimension{leftrulethickness}, 0)
-    withpen pensquare scaled (\frameddimension{leftrulethickness}) 
-    withcolor \MPcolor{\framedparameter{leftframecolor}} ;
+    shifted (-.5*\frameddimension{\c!left\c!rulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{\c!left\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!left\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
@@ -98,9 +98,9 @@
   draw rightboundary OverlayBox 
     topenlarged    -\frameddimension{\c!toffset}
     bottomenlarged -\frameddimension{\c!boffset}
-    shifted (.5*\frameddimension{rightrulethickness}, 0)
-    withpen pensquare scaled (\frameddimension{rightrulethickness}) 
-    withcolor \MPcolor{\framedparameter{rightframecolor}} ;
+    shifted (.5*\frameddimension{\c!right\c!rulethickness}, 0)
+    withpen pensquare scaled (\frameddimension{\c!right\c!rulethickness}) 
+    withcolor \MPcolor{\framedparameter{\c!right\c!framecolor}} ;
   setbounds currentpicture to OverlayBox ;
 \stopuseMPgraphic
 
